@@ -6,9 +6,18 @@ setwd("C:/Users/Simone/Dropbox/Deakin_PhD/170206_R_Workshop/VicBioCon17")
 
 library(tidyverse)
 
+#load readr package
+
+library(readr)
+
 #import and store bat data
 
-bat<-read.csv('data/bat_dat.csv')
+bat <- readr::read_csv("./data/bat_dat.csv", 
+                           col_types = cols(
+                             Season = col_factor(levels = c(1,2)),
+                             Habitat = col_factor(levels = c(0,1)),
+                             Bioregion= col_factor(levels=c(1,2,3,4),NA)
+                           ))
 
 #subset only rows where season = 1 and sightings of species Chgouldii are over 100
 
